@@ -1,3 +1,8 @@
+import db from '../database/connection.js'
+
+async function addSeeds () {
+const cardSeed = db.collection('cards')
+
 const cardSeeds = [{ 
     player: "Babe Ruth",
     year: 1939,
@@ -15,4 +20,8 @@ const cardSeeds = [{
     decription: "best card ever"
 }];
 
-export default cardSeeds
+const result = await cardSeed.insertMany(cardSeeds)
+console.log(result)
+}
+
+export default addSeeds

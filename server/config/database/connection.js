@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-
+import addSeeds from "./seeds.js";
 const dbURI = 'mongodb+srv://jasonhoomalu:Goninja.44b@cluster0.ym5m4p6.mongodb.net/'; // Replace with your MongoDB connection string
 
 // Connect to the MongoDB database
@@ -11,6 +11,7 @@ const db = mongoose.connection;
 // Handle connection events
 db.on('connected', () => {
   console.log('Mongoose connected to ' + dbURI);
+  addSeeds()
 });
 
 db.on('error', (err) => {
