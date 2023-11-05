@@ -1,2 +1,2 @@
-# chuckies-collectables
-sports cards and collectables website
+# Northwest Card Company
+sports cards and collectables

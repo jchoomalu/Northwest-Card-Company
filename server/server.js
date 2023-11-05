@@ -1,16 +1,20 @@
 import express from 'express'
-import bodyParser from 'body-parser'
 import database from './config/database/connection.js'
-import sampleRoute from './routes/sampleRoute.js'
+import cors from 'cors'
+import cardRoute from './routes/cardRoute.js'
+import bodyParser from 'express'
 
 const app = express();
 const port = 1919;
 
 // Middleware
-app.use(bodyParser.json());
+app.use(cors())
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.json());
 
 // Routes
-app.use('/samples', sampleRoute);
+
+app.use('/api', cardRoute);
 
 // Start the server
 app.listen(port, () => {
