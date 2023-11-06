@@ -1,3 +1,35 @@
 .searchContainer {
-    width: 50%;
+  width: 50%;
+}
+.logo {
+  width: 300px;
+}
+Nav {
+    background: rgb(255,255,255);
+    background: linear-gradient(93deg, rgba(255,255,255,1) 2%, rgba(23,44,199,1) 100%);
+}
+.vetBadge {
+  height: 120px;
+  padding: 16px;
+}
+
+/* ImageSlider.css */
+
+.image-container {
+  padding: 0;
+  position: relative;
+  top: -16px;
+  width: 100%;
+  right: 100%;
+  transition: right 1.5s ease;
+}
+
+.image-container.slide-in {
+  width: 100%;
+  right: 0%;
+}
+
+.accentImage {
+  width: 100%;
+  height: 80%;
 }
