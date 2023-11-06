@@ -1,6 +1,7 @@
 import mongoose from "mongoose";
 import addSeeds from "./seeds.js";
-const dbURI = 'mongodb+srv://jasonhoomalu:Goninja.44b@cluster0.ym5m4p6.mongodb.net/'; // Replace with your MongoDB connection string
+
+const dbURI = 'mongodb+srv://jasonhoomalu:Goninja.44b@cluster0.ym5m4p6.mongodb.net/NWcards'; // Replace with your MongoDB connection string
 
 // Connect to the MongoDB database
 mongoose.connect(dbURI);
