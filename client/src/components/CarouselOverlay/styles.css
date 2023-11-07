@@ -1,0 +1,8 @@
+.carousel-overlay {
+    width: fit-content;
+    padding: 8px;
+    border-radius: 8px;
+    margin-top: 100px;
+    margin-left: 200px;
+    position: absolute;
+}

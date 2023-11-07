@@ -1,0 +1,20 @@
+.carousel {
+    background: rgb(255,255,255);
+    background: linear-gradient(93deg, rgba(255,255,255,1) 2%, rgba(23,44,199,1) 100%);
+    max-height: 350px;
+    position: relative;
+    top: -53px;
+    overflow: hidden;
+}
+
+.cardGroupFanned {
+    max-height: 400px;
+    position: relative;
+    left: 55%;
+}
+
+.cardGroupRound {
+    position:  relative;
+    max-height: 400px;
+    left: 70%;
+}
