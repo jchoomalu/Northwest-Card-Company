@@ -16,6 +16,10 @@ import "./styles.css";
 
 const Navigation = () => {
   const [slideIn, setSlideIn] = useState(false);
+  const [user, setUser] = useState(false)
+  const [isHomePage, setIsHomePage] = useState(false)
+
+
 
   //american family slide in  accent bar animation in css
   useEffect(() => {
@@ -25,11 +29,19 @@ const Navigation = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+  useEffect(() => {
+    if (document.location.pathname === "/") {
+      setIsHomePage(true)
+    } else {
+      setIsHomePage(false)
+    }
+  })
+
   return (
     <>
       <Navbar variant="light" className="p-2" collapseOnSelect expand="lg">
-        <Navbar.Brand href="#home">
-          <Image className="logo" src={logo} />
+        <Navbar.Brand href="/">
+          <Image className="logo img img-fluid" src={logo} />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
@@ -37,10 +49,11 @@ const Navigation = () => {
             <Nav.Link href="#features">Shop</Nav.Link>
             <Nav.Link href="#pricing">About</Nav.Link>
             <NavDropdown title="Members" id="collasible-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">
-                Another action
-              </NavDropdown.Item>
+              {user ?  
+              <NavDropdown.Item href="/users/signout">Sign Out</NavDropdown.Item>
+              :
+              <NavDropdown.Item href="/users/signup">Sign Up</NavDropdown.Item>}
+              <NavDropdown.Item href="/users/singin">Sign In</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
               <NavDropdown.Divider />
               <NavDropdown.Item href="#action/3.4">
@@ -48,7 +61,7 @@ const Navigation = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Container className="searchContainer w-50">
+          <Container className="searchContainer p-md-4">
             <Form className="d-flex">
               <FormControl
                 type="text"
@@ -61,9 +74,11 @@ const Navigation = () => {
           <Image className="vetBadge d-none d-lg-block" src={vetBadge} />
         </Navbar.Collapse>
       </Navbar>
-      <Container className={`image-container ${slideIn ? "slide-in" : ""}`}>
+
+      <Container className={`mt-4 mt-lg-0 image-container ${slideIn ? "slide-in" : ""}`}>
         <Image className="accentImage" src={accent} />
       </Container>
+   
     </>
   );
 };

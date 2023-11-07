@@ -1,16 +1,17 @@
 .searchContainer {
-  width: 50%;
+  /* width: 50%; */
   margin: 30px;
 }
 
 .logo {
-  width: 300px;
+  width: 280px;
 }
 
 Nav {
     background: rgb(255,255,255);
     background: linear-gradient(93deg, rgba(255,255,255,1) 2%, rgba(23,44,199,1) 100%);
 }
+
 .vetBadge {
   height: 120px;
   padding: 16px;

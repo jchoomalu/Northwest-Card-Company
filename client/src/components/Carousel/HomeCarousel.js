@@ -10,7 +10,7 @@ function HomeCarousel() {
     <Carousel interval={4000}>
       <Carousel.Item data-slide="next">
         <CarouselOverlay>
-          <h3>Browse Thousands Of Individual Cards</h3>
+          <h3>Browse Individual Cards</h3>
           <p>10% off your first order over $50</p>
           <Container>
             <ButtonGroup size="lg" aria-label="sport type button group">

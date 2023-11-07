@@ -1,6 +1,6 @@
 .carousel {
     background: rgb(255,255,255);
-    background: linear-gradient(93deg, rgba(255,255,255,1) 2%, rgba(23,44,199,1) 100%);
+    background: linear-gradient(93deg, rgb(255,255,255) 2%, rgb(23,44,199) 100%);
     max-height: 350px;
     position: relative;
     top: -53px;
@@ -17,4 +17,12 @@
     position:  relative;
     max-height: 400px;
     left: 70%;
+}
+
+.btn-group {
+    box-shadow: 0px 1px 16px rgba(23,44,199, .4);
+}
+
+.btn {
+    border: 2px solid white !important;  
 }
