@@ -34,9 +34,9 @@ const Navigation = () => {
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#features">Features</Nav.Link>
-            <Nav.Link href="#pricing">Pricing</Nav.Link>
-            <NavDropdown title="Dropdown" id="collasible-nav-dropdown">
+            <Nav.Link href="#features">Shop</Nav.Link>
+            <Nav.Link href="#pricing">About</Nav.Link>
+            <NavDropdown title="Members" id="collasible-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
                 Another action
@@ -48,7 +48,7 @@ const Navigation = () => {
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
-          <Container className="searchContainer">
+          <Container className="searchContainer w-50">
             <Form className="d-flex">
               <FormControl
                 type="text"
@@ -58,7 +58,7 @@ const Navigation = () => {
               <Button variant="outline-light">Search</Button>
             </Form>
           </Container>
-          <Image className="vetBadge" src={vetBadge} />
+          <Image className="vetBadge d-none d-lg-block" src={vetBadge} />
         </Navbar.Collapse>
       </Navbar>
       <Container className={`image-container ${slideIn ? "slide-in" : ""}`}>
