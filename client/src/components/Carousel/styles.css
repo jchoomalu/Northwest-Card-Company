@@ -15,12 +15,12 @@
 
 .cardGroupRound {
     position:  relative;
-    max-height: 400px;
+    max-height: 420px;
     left: 70%;
 }
 
 .btn-group {
-    box-shadow: 0px 1px 16px rgba(23,44,199, .4);
+    box-shadow: 0px 1px 8px rgba(23,44,199, .4);
 }
 
 .btn {
