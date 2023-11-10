@@ -17,9 +17,6 @@ import "./styles.css";
 const Navigation = () => {
   const [slideIn, setSlideIn] = useState(false);
   const [user, setUser] = useState(false)
-  const [isHomePage, setIsHomePage] = useState(false)
-
-
 
   //american family slide in  accent bar animation in css
   useEffect(() => {
@@ -28,14 +25,6 @@ const Navigation = () => {
     }, 500); 
     return () => clearTimeout(timeout);
   }, []);
-
-  useEffect(() => {
-    if (document.location.pathname === "/") {
-      setIsHomePage(true)
-    } else {
-      setIsHomePage(false)
-    }
-  })
 
   return (
     <>

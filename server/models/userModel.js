@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const crypto = require('crypto');
+import mongoose from "mongoose";
+import crypto from "crypto";
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -7,8 +7,11 @@ const userSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  // Store the hashed password as a virtual field
-  password: String,
+  // Store the hashed password directly
+  password: {
+    type: String,
+    required: true,
+  },
   salt: String, // Store a unique salt value for each user
   admin: {
     type: Boolean,
@@ -29,20 +32,19 @@ const userSchema = new mongoose.Schema({
       street: String,
       city: String,
       state: String,
-      Zipcode, Number,
-    }
+      Zipcode: Number,
+    },
   }
-});
+}, {timestamps: true});
 
-// Create a virtual field for the password hash
-userSchema.virtual('hashedPassword')
-  .get(function () {
-    return this.password;
-  })
-  .set(function (password) {
+// Middleware to hash the password before saving
+userSchema.pre('save', function (next) {
+  if (this.isModified('password')) {
     this.salt = crypto.randomBytes(16).toString('hex');
-    this.password = this.hashPassword(password);
-  });
+    this.password = this.hashPassword(this.password);
+  }
+  next();
+});
 
 // Method to hash the password
 userSchema.methods.hashPassword = function (password) {
@@ -59,4 +61,4 @@ userSchema.methods.verifyPassword = function (password) {
 
 const User = mongoose.model('User', userSchema);
 
-export default User
+export default User;

@@ -19,11 +19,6 @@ export const getter = async () => {
 };
 
 export const signup = async (formData) => {
-  try {
     const response = await instance.post('/users/signup', formData);
     return response
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
 };

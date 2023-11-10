@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Button, Form, Card, Container } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import { Form, Card, Container } from "react-bootstrap";
+import { signup } from "../../axios/users_api.js";
 
 function Signup() {
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
@@ -18,13 +22,20 @@ function Signup() {
     }));
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
+    setPasswordError("")
+    setEmailError("")
     if (formData.confirm !== formData.password) {
-      document.getElementById("password-feedback").innerText =
-        "Passwords Must Match";
-    } 
-    console.log("Form Data:", formData);
+      setPasswordError("Passwords Must Match")
+    } else {
+      try {
+        const user = await signup(formData);
+        console.log(user);
+      } catch (error) {
+        setEmailError(error.response.data);
+      }
+    }
   };
 
   return (
@@ -41,6 +52,7 @@ function Signup() {
               value={formData.email}
               onChange={handleChange}
             />
+            <small className="text-danger mx-auto">{emailError}</small>
             <small id="email-feedback"></small>
           </Form.Group>
 
@@ -80,7 +92,7 @@ function Signup() {
             />
           </Form.Group>
 
-          <Form.Group className="my-2" controlId="formPassword">
+          <Form.Group className="my-2" controlId="formConfirm">
             <Form.Label>Confirm Password</Form.Label>
             <Form.Control
               required
@@ -92,10 +104,7 @@ function Signup() {
             />
           </Form.Group>
 
-          <small
-            id="password-feedback"
-            className="text-center text-danger"
-          ></small>
+          <small className="text-danger">{passwordError}</small>
 
           <Button className="my-2" variant="primary" type="submit">
             Submit
