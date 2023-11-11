@@ -23,6 +23,6 @@ npm run dev
 
 After installing the dependencies and running the run dev command your browser should automatically start the app. If your browser settings don't permit auto run, navigate to:
 
-[localhost](localhost:3000)
+[localhost]("localhost:3000")
 
 
