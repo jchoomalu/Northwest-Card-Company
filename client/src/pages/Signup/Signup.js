@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Form, Card, Container } from "react-bootstrap";
-import { signup } from "../../axios/users_api.js";
+import { signup, verify } from "../../axios/users_api.js";
+import { useUser } from "../../context/userContext.js";
+import { redirect } from "react-router-dom";
 
 function Signup() {
+  const { login } = useUser();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
@@ -24,16 +27,31 @@ function Signup() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setPasswordError("")
-    setEmailError("")
+    setPasswordError("");
+    setEmailError("");
     if (formData.confirm !== formData.password) {
-      setPasswordError("Passwords Must Match")
+      setPasswordError("Passwords Must Match");
     } else {
       try {
         const user = await signup(formData);
-        console.log(user);
+        const token = user.data.token;
+        sessionStorage.setItem("jwtToken", token);
+        const authorized = await verify(token);
+        login(authorized.data);
+        return redirect("/")
       } catch (error) {
-        setEmailError(error.response.data);
+        if (error.response) {
+          // The request was made, but the server responded with an error
+          setEmailError(error.response.data);
+        } else if (error.request) {
+          // The request was made, but no response was received
+          setEmailError(
+            "No response received from the server. Please try again."
+          );
+        } else {
+          // Something happened in setting up the request that triggered an error
+          setEmailError("An error occurred. Please try again later.");
+        }
       }
     }
   };

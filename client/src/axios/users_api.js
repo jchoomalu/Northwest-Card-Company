@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 export const instance = axios.create({
   baseURL: "http://localhost:1919/api",
@@ -8,17 +8,17 @@ export const instance = axios.create({
   },
 });
 
-export const getter = async () => {
-  try {
-    const response = await instance.get('/');
-    return response.data;
-  } catch (error) {
-    console.error('Error fetching data:', error);
-    throw error;
-  }
+export const verify = async (token) => {
+  const response = await instance.get("/users/verify", {
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`,
+    },
+  });
+  return response
 };
 
 export const signup = async (formData) => {
-    const response = await instance.post('/users/signup', formData);
-    return response
+  const response = await instance.post("/users/signup", formData);
+  return response;
 };

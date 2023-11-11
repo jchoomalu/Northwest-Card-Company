@@ -9,6 +9,7 @@ import {
   Image,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
+import { useUser } from '../../context/userContext.js';
 import logo from "../../assets/images/logo2.png";
 import vetBadge from "../../assets/images/VeteranOwnedBadge.png";
 import accent from "../../assets/images/accentBar.png";
@@ -16,7 +17,7 @@ import "./styles.css";
 
 const Navigation = () => {
   const [slideIn, setSlideIn] = useState(false);
-  const [user, setUser] = useState(false)
+  const { user } = useUser();
 
   //american family slide in  accent bar animation in css
   useEffect(() => {
@@ -25,6 +26,8 @@ const Navigation = () => {
     }, 500); 
     return () => clearTimeout(timeout);
   }, []);
+
+  console.log("USER:", user)
 
   return (
     <>

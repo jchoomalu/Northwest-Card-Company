@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { getter } from "../../axios/test.js";
 import HomeCarousel from "../../components/Carousel";
+import CarouselProducts from "../../components/CarouselProducts.js";
 
 const Home = () => {
   useEffect(() => {
@@ -9,7 +10,10 @@ const Home = () => {
   });
 
   return (
+    <>
     <HomeCarousel />
+    <CarouselProducts />
+    </>
   )
 };
 
