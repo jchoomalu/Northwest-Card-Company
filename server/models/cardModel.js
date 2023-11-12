@@ -3,18 +3,19 @@ import mongoose from "mongoose";
 const cardSchema = new mongoose.Schema(
   {
     player: { type: String, required: true },
-    year: { type: Number, required: true },
+    year: String,
     sport: {
       type: String,
-      enum: ["basketball", "baseball", "football", "hockey"],
+      enum: ["Basketball", "Baseball", "Football", "Hockey"],
       required: true,
     },
     team: String,
     cardNumber: String,
+    brand: String,
     condition: String,
     value: Number,
     price: Number,
-    graded: {
+    grade: {
       PSA: Number,
       BGS: Number,
     },

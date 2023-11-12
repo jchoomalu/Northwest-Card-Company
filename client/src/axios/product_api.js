@@ -8,7 +8,7 @@ export const instance = axios.create({
   },
 });
 
-export const getter = async () => {
+export const getFive = async () => {
   try {
     const response = await instance.get('/');
     return response.data;

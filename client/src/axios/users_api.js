@@ -18,7 +18,12 @@ export const verify = async (token) => {
   return response
 };
 
-export const signup = async (formData) => {
+export const createUser = async (formData) => {
   const response = await instance.post("/users/signup", formData);
+  return response;
+};
+
+export const loginUser = async (formData) => {
+  const response = await instance.post("/users/signin", formData);
   return response;
 };

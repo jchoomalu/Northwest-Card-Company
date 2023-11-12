@@ -59,6 +59,7 @@ userSchema.methods.verifyPassword = function (password) {
   return this.password === hashedPassword;
 };
 
+
 const User = mongoose.model('User', userSchema);
 
 export default User;

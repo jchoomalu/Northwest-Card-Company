@@ -9,7 +9,7 @@ import {
   Image,
 } from "react-bootstrap";
 import { useState, useEffect } from "react";
-import { useUser } from '../../context/userContext.js';
+import { useUser } from "../../context/userContext.js";
 import logo from "../../assets/images/logo2.png";
 import vetBadge from "../../assets/images/VeteranOwnedBadge.png";
 import accent from "../../assets/images/accentBar.png";
@@ -23,11 +23,14 @@ const Navigation = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSlideIn(true);
-    }, 500); 
+    }, 500);
     return () => clearTimeout(timeout);
   }, []);
 
-  console.log("USER:", user)
+  //clears token and return user to home page
+  const signout = () => {
+    sessionStorage.clear()
+  }
 
   return (
     <>
@@ -40,17 +43,29 @@ const Navigation = () => {
           <Nav className="mr-auto">
             <Nav.Link href="#features">Shop</Nav.Link>
             <Nav.Link href="#pricing">About</Nav.Link>
-            <NavDropdown title="Members" id="collasible-nav-dropdown">
-              {user ?  
-              <NavDropdown.Item href="/users/signout">Sign Out</NavDropdown.Item>
-              :
-              <NavDropdown.Item href="/users/signup">Sign Up</NavDropdown.Item>}
-              <NavDropdown.Item href="/users/singin">Sign In</NavDropdown.Item>
+            <NavDropdown
+              title={user ? `Welcome ${user.firstName}` : "Members"}
+              id="collasible-nav-dropdown"
+            >
+              {!user ?
+              <>
+              <NavDropdown.Item href="/users/signup">Sign Up </NavDropdown.Item>
+              <NavDropdown.Item href="/users/signin">Sign In</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+              </>
+              :
+              <>
+              <NavDropdown.Item href="/users/signup">Account</NavDropdown.Item>
+              <NavDropdown.Item href="/users/singin">Cart</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">Inquires</NavDropdown.Item>
+              </>}
+
               <NavDropdown.Divider />
-              <NavDropdown.Item href="#action/3.4">
-                Separated link
-              </NavDropdown.Item>
+              <NavDropdown.Item onClick={signout} href="/">Sign Out</NavDropdown.Item>
+              {user && user.admin ? 
+              <NavDropdown.Item href="#action/3.4">Add Cards</NavDropdown.Item>
+                : ''
+              }
             </NavDropdown>
           </Nav>
           <Container className="searchContainer p-md-4">
@@ -67,10 +82,11 @@ const Navigation = () => {
         </Navbar.Collapse>
       </Navbar>
 
-      <Container className={`mt-4 mt-lg-0 image-container ${slideIn ? "slide-in" : ""}`}>
+      <Container
+        className={`mt-4 mt-lg-0 image-container ${slideIn ? "slide-in" : ""}`}
+      >
         <Image className="accentImage" src={accent} />
       </Container>
-   
     </>
   );
 };

@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { Button } from "react-bootstrap";
-import { Form, Card, Container } from "react-bootstrap";
-import { signup, verify } from "../../axios/users_api.js";
+import { Button, Form, Card, Container } from "react-bootstrap";
+import { createUser, verify } from "../../axios/users_api.js";
 import { useUser } from "../../context/userContext.js";
-import { redirect } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import "./styles.css";
 
 function Signup() {
   const { login } = useUser();
+  const navigate = useNavigate();
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [formData, setFormData] = useState({
@@ -33,12 +34,12 @@ function Signup() {
       setPasswordError("Passwords Must Match");
     } else {
       try {
-        const user = await signup(formData);
+        const user = await createUser(formData);
         const token = user.data.token;
         sessionStorage.setItem("jwtToken", token);
         const authorized = await verify(token);
         login(authorized.data);
-        return redirect("/")
+        navigate("/");
       } catch (error) {
         if (error.response) {
           // The request was made, but the server responded with an error
@@ -57,7 +58,11 @@ function Signup() {
   };
 
   return (
-    <Card className="w-50 mx-auto mb-5 p-4">
+    <>
+    <Card className="col-sm-12 col-md-10 col-lg-8 mx-auto mb-5 shadow p-4">
+      <Container className="text-center my-3 w-75 form-header"> 
+      <h5>Northwest Card Company will never share your information.</h5>
+      </Container>
       <Form onSubmit={handleSubmit}>
         <Container className="row">
           <Form.Group className="my-2" controlId="formEmail">
@@ -65,7 +70,7 @@ function Signup() {
             <Form.Control
               required
               type="email"
-              placeholder="Enter email"
+              placeholder="Email"
               name="email"
               value={formData.email}
               onChange={handleChange}
@@ -79,7 +84,7 @@ function Signup() {
             <Form.Control
               required
               type="text"
-              placeholder="Enter Your First Name"
+              placeholder="First Name"
               name="firstName"
               value={formData.firstName}
               onChange={handleChange}
@@ -91,7 +96,7 @@ function Signup() {
             <Form.Control
               required
               type="text"
-              placeholder="Enter Your Last Name"
+              placeholder="Last Name"
               name="lastName"
               value={formData.lastName}
               onChange={handleChange}
@@ -130,6 +135,10 @@ function Signup() {
         </Container>
       </Form>
     </Card>
+     <Card className="col-sm-12 col-md-10 col-lg-8 mx-auto mb-5 shadow p-3 text-center">
+     <Card.Text>Already A Member? <Link to="/users/signin">Log In To Your Account</Link></Card.Text>
+   </Card>
+   </>
   );
 }
 

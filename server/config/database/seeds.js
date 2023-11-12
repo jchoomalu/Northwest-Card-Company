@@ -1,24 +1,109 @@
 import db from '../database/connection.js'
 
 async function addSeeds () {
+
+
 const cardSeed = db.collection('cards')
 
+await cardSeed.drop()
+
 const cardSeeds = [{ 
-    player: "Babe Ruth",
-    year: 1939,
-    sport: "baseball",
-    team: "New York Yankees",
-    cardNumber: "3435",
-    condition: "mint",
-    value: 1000000,
-    price: 9800000,
-    graded: {
+    player: "Ken Griffey Jr.",
+    year: "1990",
+    team: "Seattle Mariners",
+    brand: "Upper Deck",
+    sport: "Baseball",
+    cardNumber: "009445678",
+    condition: "Very good",
+    price: 19.99,
+    grade: {
         PSA: 9,
+        BGS: 9
+     },
+    imageURL: "/images/griffeyUpperDeck.jpg",
+    description: "Classic high gloss showcase card by Upper Deck. Slight printing defect on player details portion of the back has this otherwise perfect card graded at a solid 9."
+},
+{
+    player: "Derek Jeter",
+    year: "1991",
+    team: "New York Yankees",
+    brand: "Bowman",
+    sport: "Baseball",
+    cardNumber: "3394585",
+    condition: "Mint",
+    price: 399.99,
+    grade: {
+        PSA: 10,
+        BGS: 10
+     },
+    imageURL: "/images/derekJeterBowman.jpg",
+    description: "Graded at a perfect 10, this early Bowman Jeter is a must have for any serious collector."
+},
+{
+    player: "Mark McGwire",
+    year: "1987",
+    team: "OaKland Athletics",
+    brand: "Donruss",
+    sport: "Baseball",
+    cardNumber: "8859433",
+    condition: "Near Mint",
+    price: 69.99,
+    grade: {
+        PSA: 9.5,
+        BGS: 9
+     },
+    imageURL: "/images/markMcguire.jpg",
+    description: "Early rookie card for one of the best hitters of all time. Near mint condition."
+},
+{
+    player: "Ken Griffey Jr.",
+    year: "1992",
+    sport: "Baseball",
+    team: "Seattle Mariners",
+    brand: "Upper Deck",
+    cardNumber: "1122434",
+    condition: "Very Good",
+    price: 12.99,
+    grade: {
+        PSA: 8.5,
+        BGS: 9
+     },
+    imageURL: "/images/griffeyUD.jpeg",
+    description: "Rookie of the year, and boy was he about to shake up the sport. Slightly grainy print has this card graded well below value."
+},
+{
+    player: "Nolan Ryan",
+    year: "1989",
+    sport: "Baseball",
+    team: "Texas Rangers",
+    brand: "Topps",
+    cardNumber: "785648876",
+    condition: "Near Mint",
+    price: 39.99,
+    grade: {
+        PSA: 9.5,
         BGS: 9.5
-    },
-    image: "https://www.ebay.com/itm/334722127314?hash=item4deefe55d2:g:LTUAAOSwsS5iFoSs&amdata=enc%3AAQAIAAAA0KcV72GMOClGxVsbZ9nqIByExRBKw2FT%2BjNm%2FIT9O4txA43Tkebmeto7U0o5iX47ToKWhaTGT4T5ZBxBQi%2FoR65kizz48VWoYt7xUK9RorT%2BCORDzn2E8iUQ%2FeLdxCGUiaPhTV0etuTEZtlc2mg%2BwZiibiOLBBn2XxkzOOYzrLUTYdU8tHmml%2BNt%2FLqEXo7Sju%2FOiiSLn8YG5cTqQ9yJXGbUAyjK7AKHyJic8pB92Nyohir9amEdzMYCoPupb9A7La4R7Vucba3EsGbYn%2BRqe3k%3D%7Ctkp%3ABFBM6LaNtoFi",
-    decription: "best card ever"
-}];
+     },
+    imageURL: "/images/nolanRyanTopps.jpg",
+    description: "Excellent item for any collector, ships in protective UV plastic case."
+},
+{
+    player: "Greg Maddux",
+    year: "1987",
+    sport: "Baseball",
+    brand: "Topps",
+    team: "Chicago Cubs",
+    cardNumber: "54656",
+    condition: "Mint",
+    price: 12.99,
+    grade: {
+        PSA: 10,
+        BGS: 10,
+     },
+    imageURL: "/images/gregMaddux.jpg",
+    description: "Topps official rookie card in Mint condition."
+},
+];
 
 const result = await cardSeed.insertMany(cardSeeds)
 console.log(result)
