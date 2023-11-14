@@ -106,7 +106,7 @@ const cardSeeds = [{
 ];
 
 const result = await cardSeed.insertMany(cardSeeds)
-console.log(result)
+
 }
 
 export default addSeeds

@@ -6,15 +6,14 @@ const cardSchema = new mongoose.Schema(
     year: String,
     sport: {
       type: String,
-      enum: ["Basketball", "Baseball", "Football", "Hockey"],
+      enum: ["Basketball", "Baseball", "Football", "Hockey", "Other"],
       required: true,
     },
     team: String,
     cardNumber: String,
     brand: String,
     condition: String,
-    value: Number,
-    price: Number,
+    price: String,
     grade: {
       PSA: Number,
       BGS: Number,

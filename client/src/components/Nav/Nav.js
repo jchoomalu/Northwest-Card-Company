@@ -61,11 +61,15 @@ const Navigation = () => {
               </>}
 
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={signout} href="/">Sign Out</NavDropdown.Item>
               {user && user.admin ? 
-              <NavDropdown.Item href="#action/3.4">Add Cards</NavDropdown.Item>
-                : ''
-              }
+              <>
+              <p className="nav-heaader">Admin</p>
+              <NavDropdown.Item href="/admin/addcards">Add Cards</NavDropdown.Item>
+              </>
+              : ''
+            }
+            <NavDropdown.Divider />
+            <NavDropdown.Item onClick={signout} href="/">Sign Out</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Container className="searchContainer p-md-4">

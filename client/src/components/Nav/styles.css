@@ -12,6 +12,14 @@ Nav {
     background: linear-gradient(93deg, rgba(255,255,255,1) 2%, rgba(23,44,199,1) 100%);
 }
 
+.nav-heaader {
+  font-weight: 900;
+  letter-spacing: .8;
+  margin-left: 12px;
+  margin-bottom: -4px;
+  text-decoration: underline;
+}
+
 .vetBadge {
   height: 120px;
   padding: 16px;

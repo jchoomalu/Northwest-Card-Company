@@ -9,8 +9,8 @@ import path from "path";
 import { dirname } from "path";
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-console.log(__dirname)
+export const __dirname = dirname(__filename);
+
 const app = express();
 const port = 1919;
 
@@ -18,7 +18,8 @@ const port = 1919;
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.json());
-app.use("/images", express.static(path.join(__dirname, "public/images")));
+app.use("/images", express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static('uploads'));
 
 // Routes
 app.use("/api", cardRoute);

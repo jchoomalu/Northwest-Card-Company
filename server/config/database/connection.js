@@ -23,7 +23,6 @@ db.on('disconnected', () => {
   console.log('Mongoose disconnected');
 });
 
-// Close the Mongoose connection when the application exits
 process.on('SIGINT', () => {
   db.close(() => {
     console.log('Mongoose connection terminated due to application termination');

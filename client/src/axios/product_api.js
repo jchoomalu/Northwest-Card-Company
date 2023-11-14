@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+
 export const instance = axios.create({
   baseURL: "http://localhost:1919/api",
   headers: {
@@ -14,6 +15,25 @@ export const getFive = async () => {
     return response.data;
   } catch (error) {
     console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
+export const addCard = async (form) => {
+  try {
+    const response = await instance.post('/admin/addcard', form);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting data:', error);
+    throw error;
+  }
+};
+export const addCardImage = async (form) => {
+  try {
+    const response = await instance.post('/admin/addimage', form);
+    return response.data;
+  } catch (error) {
+    console.error('Error posting data:', error);
     throw error;
   }
 };

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Container, Row, Card, Collapse, Button } from "react-bootstrap";
 import { getFive } from "../../axios/product_api.js";
+import ProductTitle from "../ProductTitle/ProductTitle.js";
 import "./styles.css";
 
 const ProductCards = () => {
@@ -27,6 +28,7 @@ const ProductCards = () => {
 
   return (
     <Container>
+      <ProductTitle>Featured Cards</ProductTitle>
       <Row>
         {fiveRandomCards.map((card) => (
           <Card key={card.imageURL} className="product-card p-2 mx-auto col-6 col-md-4 col-lg-2 ">
