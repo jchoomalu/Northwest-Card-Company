@@ -7,6 +7,8 @@ import bodyParser from "body-parser";
 import { fileURLToPath } from "url";
 import path from "path";
 import { dirname } from "path";
+import dotenv from 'dotenv';
+dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = dirname(__filename);

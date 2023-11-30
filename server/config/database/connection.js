@@ -1,7 +1,9 @@
 import mongoose from "mongoose";
 import addSeeds from "./seeds.js";
+import dotenv from 'dotenv';
+dotenv.config();
 
-const dbURI = 'mongodb+srv://jasonhoomalu:Goninja.44b@cluster0.ym5m4p6.mongodb.net/NWcards'; // Replace with your MongoDB connection string
+const dbURI = process.env.DB_URI
 
 // Connect to the MongoDB database
 mongoose.connect(dbURI);

@@ -2,11 +2,11 @@ import React, { useState, useRef } from "react";
 import { Form, Button, Container, Card, Overlay, Row } from "react-bootstrap";
 import { addCard } from "../../../axios/product_api";
 import "./styles.css";
-import AddCardImage from "../AddCardImage/AddCardImage";
+import AddCardImage from "../AddCardImage";
 
 function AddCards() {
   const [show, setShow] = useState("");
-  const [cardId, setCardId] = useState("");
+  const [card, setCard] = useState("");
   const [display, setDisplay] = useState("details");
   const [errorMessage, setErrorMessage] = useState("");
   const target = useRef(null);
@@ -38,7 +38,7 @@ function AddCards() {
       formData.price = formattedPrice;
       const response = await addCard(formData);
       if (response) {
-        setCardId(response)
+        setCard(response);
         setDisplay("image");
       }
     } catch (error) {
@@ -342,10 +342,15 @@ function AddCards() {
         </Card>
       </>
     );
-  } else {
+  } else if (display === "image") {
     return (
-    <AddCardImage cardId={cardId} />
-    )
+      <AddCardImage
+        card={card}
+        setCard={setCard}
+        setDisplay={setDisplay}
+        display={display}
+      />
+    );
   }
 }
 
